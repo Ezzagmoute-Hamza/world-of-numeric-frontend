@@ -2,7 +2,13 @@
   <div class="relative bg-white p-6 rounded-lg shadow">
     <h2 class="text-xl font-semibold mb-4 text-gray-700">{{ title }}</h2>
     <div class="space-y-2">
-      <Pie :data="computedData" :options="options" />
+      <Pie v-if="!isError" :data="computedData" :options="options" />
+      <img 
+        v-if="isError" 
+        src="../assets/internal_server_error.png" 
+        alt="No data available" 
+        class="w-full h-auto"
+      />
     </div>
     <Loader v-if="isLoading" />
   </div>
@@ -48,5 +54,6 @@ const options = {
   responsive: true,
   maintainAspectRatio: false
 }
+const isError = computed(() => !props.isLoading && props.categorySales.length === 0);
 
 </script>
