@@ -79,7 +79,6 @@
   const totalPages = computed(() => Math.ceil(props.products.length / itemsPerPage));
   const startIndex = computed(() => (currentPage.value - 1) * itemsPerPage)
   const endIndex = computed(() => Math.min(startIndex.value + itemsPerPage, props.products.length))
-  console.log(startIndex,endIndex);
   const paginatedProducts = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage
     const end = start + itemsPerPage
