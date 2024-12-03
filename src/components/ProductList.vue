@@ -21,7 +21,7 @@
       <div class="mt-4 flex justify-between items-center">
         <div>
           <span class="text-sm text-gray-700">
-            Affichage de {{ startIndex + 1 }} à {{ endIndex }} sur {{ products.length }} produits
+            Affichage de {{ startIndex + 1 }} à {{ endIndex }} sur {{ props.products.length }} produits
           </span>
         </div>
         <div class="flex space-x-2">
@@ -73,17 +73,17 @@
       default: false,
     },
   });
-  const productsList = ref(props.products || []);
+  
   const currentPage = ref(1);
   const itemsPerPage = 10;
-  const totalPages = computed(() => Math.ceil(productsList.value.length / itemsPerPage));
+  const totalPages = computed(() => Math.ceil(props.products.length / itemsPerPage));
   const startIndex = computed(() => (currentPage.value - 1) * itemsPerPage)
-  const endIndex = computed(() => Math.min(startIndex.value + itemsPerPage, productsList.value.length))
-
+  const endIndex = computed(() => Math.min(startIndex.value + itemsPerPage, props.products.length))
+  console.log(startIndex,endIndex);
   const paginatedProducts = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage
     const end = start + itemsPerPage
-    return productsList.value.slice(start, end)
+    return props.products.slice(start, end)
   });
   const nextPage = () => {
     if (currentPage.value < totalPages.value) {
