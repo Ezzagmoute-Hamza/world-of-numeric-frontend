@@ -69,7 +69,8 @@ const apiServicesLoadingStatus = reactive({
   trendingProducts: false,
   categorySales: false,
 });
-const handleTimeRange = ()=>{
+const handleTimeRange = (value)=>{
+  timeRange.value = value;
   fetchTotalSales(timeRange.value);
 };
 const fetchProducts = async () => {
